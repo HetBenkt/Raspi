@@ -1,5 +1,6 @@
 /**
  * Created by bosa on 23-8-2017.
+ * Angular controller for the UI app
  */
 app.controller("raspiController", function ($scope, $http) {
     var currentUrl = window.location.href;
@@ -57,4 +58,4 @@ app.controller("raspiController", function ($scope, $http) {
             })
     };
 
-})
+});

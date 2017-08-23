@@ -13,17 +13,18 @@ import java.util.Map;
 
 /**
  * Created by bosa on 11-8-2017.
+ * Spring rest controller for handling the HTTP requests from the GUI to Pi4J library
  */
 @Log
 @RestController
 @RequestMapping("/api")
 public class MakeLight {
-    private Pin pin = new Pin();
+    private final Pin pin = new Pin();
     private GpioController gpio;
 
     @RequestMapping("/test")
     public ResponseEntity<Map<String,String>> apiTest() {
-        Map<String,String> result = new HashMap<String,String>();
+        Map<String,String> result = new HashMap<>();
         result.put("message", "Initialized...");
         return ResponseEntity.ok().body(result);
     }
@@ -31,13 +32,13 @@ public class MakeLight {
     @RequestMapping("/gpio/init")
     public ResponseEntity<Pin> gpioInit() {
         gpio = GpioFactory.getInstance();
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     @RequestMapping("/gpio/off")
     public ResponseEntity<Pin> gpioOff() {
         gpio.shutdown();
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     @RequestMapping("/led/on")
@@ -49,7 +50,7 @@ public class MakeLight {
             pin.setState(gpioPin.getState());
         }
         gpio.unprovisionPin(gpioPin);
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     @RequestMapping("/led/off")
@@ -62,7 +63,7 @@ public class MakeLight {
         }
 
         gpio.unprovisionPin(gpioPin);
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     @RequestMapping("/led/blink")
@@ -75,7 +76,7 @@ public class MakeLight {
         }
 
         gpio.unprovisionPin(gpioPin);
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     @RequestMapping("/led/pulse")
@@ -88,7 +89,7 @@ public class MakeLight {
         }
 
         gpio.unprovisionPin(gpioPin);
-        return new ResponseEntity<Pin>(pin, HttpStatus.OK);
+        return new ResponseEntity<>(pin, HttpStatus.OK);
     }
 
     private GpioPinDigitalOutput initGpioPin() {
@@ -98,63 +99,4 @@ public class MakeLight {
         gpioPin.setShutdownOptions(true, PinState.LOW);
         return gpioPin;
     }
-
-//    @RequestMapping("/pin/sample")
-//    public void ledControl() throws InterruptedException {
-//        log.info("START APP");
-//
-//        final GpioController gpio = GpioFactory.getInstance();
-//        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-//
-//        pin.setShutdownOptions(true, PinState.LOW);
-//
-//        if(pin.isLow()) {
-//            pin.high();
-//            log.info(String.format("Pin %s has state %s. Light is ON", pin.getName(), pin.getState()));
-//            Thread.sleep(3000);
-//        }
-//
-//        if(pin.isHigh()) {
-//            pin.low();
-//            log.info(String.format("Pin %s has state %s. Light is OFF", pin.getName(), pin.getState()));
-//            Thread.sleep(3000);
-//        }
-//
-//        log.info(String.format("Light is BLINKING", pin.getName(), pin.getState()));
-//        for (int i=0; i<10; i++) {
-//            pin.high();
-//            Thread.sleep(500);
-//            pin.low();
-//            Thread.sleep(500);
-//        }
-//
-//        if(pin.isLow()) {
-//            pin.high();
-//            log.info(String.format("Pin %s has state %s. Light is ON", pin.getName(), pin.getState()));
-//            Thread.sleep(2000);
-//        }
-//
-//        pin.toggle();
-//        log.info(String.format("Pin %s has state %s.", pin.getName(), pin.getState()));
-//        Thread.sleep(2000);
-//
-//        if(pin.isHigh())
-//            pin.low();
-//        pin.pulse(1000);
-//        log.info(String.format("Pin %s has state %s. Light is PULSE", pin.getName(), pin.getState()));
-//        Thread.sleep(2000);
-//
-//        if(pin.isHigh())
-//            pin.low();
-//        pin.blink(100, 5000);
-//        log.info(String.format("Pin %s has state %s. Light is BLINK", pin.getName(), pin.getState()));
-//        Thread.sleep(2000);
-//
-//        gpio.shutdown();
-//        log.info("GPIO shutdown");
-//        gpio.unprovisionPin(pin);
-//        log.info(String.format("Pin %s ìs unprovisioned and has state %s.", pin.getName(), pin.getState()));
-//
-//        log.info("END APP");
-//    }
 }
