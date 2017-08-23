@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raspberry Pi control</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container" ng-app="raspiApp" ng-controller="raspiController">
+    <div class="jumbotron">
+        <h1>Raspi Control</h1>
+        <p>A small and affordable computer that you can use to learn programming</p>
+        <p><a target="_blank" href="https://www.raspberrypi.org/">https://www.raspberrypi.org/</a></p>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#control" data-toggle="tab">Control</a></li>
+        <li><a href="#resources" data-toggle="tab">Resources</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="control">
+            <h3>Controllers</h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <button type="button" class="btn" ng-click="testApi()">Test API</button>
+                    <button type="button" class="btn" ng-click="initGpio()">Initiate GPIO</button>
+                    <button type="button" class="btn" ng-click="ledOn()">Led ON</button>
+                    <button type="button" class="btn" ng-click="ledOff()">Led OFF</button>
+                    <button type="button" class="btn" ng-click="shutdownGpio()">Shutdown GPIO</button>
+                </div>
+                <div class="panel-footer">
+                    <textarea class="form-control" rows="10" ng-model="history"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="resources">
+            <h3>List of resources</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a target="_blank" href="http://www.makeuseof.com/tag/emulate-raspberry-pi-pc/">Raspberry Pi
+                        emulation</a></td>
+                    <td>How to Emulate a Raspberry Pi on Your PC</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="http://www.instructables.com/id/Raspberry-Pi-Emulator-for-Windows-10/">Pi
+                        emulation on Windows 10</a></td>
+                    <td>Raspberry Pi Emulator for Windows 10</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank"
+                           href="https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot">Static
+                        content in Spring App</a></td>
+                    <td>Serving Static Web Content with Spring Boot</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.w3schools.com/default.asp">W3schools</a></td>
+                    <td>Resource for HTML, JQuery, Angular, Bootstrap, etc...</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.raspberrypi.org/forums/viewtopic.php?t=5851">Raspberry Pi
+                        HDMI output settings</a></td>
+                    <td>Setting up HDMI output when video output is wrong.</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.raspberrypi.org/forums/viewtopic.php?t=133691">Raspberry Pi
+                        GUI guide</a></td>
+                    <td>Raspbian Lite with PIXEL/LXDE/XFCE/MATE/i3 GUI</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.raspberrypi.org/documentation/configuration/security.md">Raspberry
+                        Pi security</a></td>
+                    <td>SECURING YOUR RASPBERRY PI</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=38417">Raspberry
+                        Pi disk space</a></td>
+                    <td>How to check the free space of SD card</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank"
+                           href="http://raspi.tv/2016/how-to-free-up-some-space-on-your-raspbian-sd-card-remove-wolfram-libreoffice">Raspberry
+                        Pi free up disk space</a></td>
+                    <td>How To Free Up Some Space On Your Raspbian SD Card</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.kiwi-electronics.nl/raspberry-pi">KIWI Electronics</a></td>
+                    <td>RASPBERRY PI BOARDS, BEHUIZINGEN, ADDONS EN ACCESSOIRES</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.kiwi-electronics.nl/raspberry-pi">KIWI Electronics</a></td>
+                    <td>RASPBERRY PI BOARDS, BEHUIZINGEN, ADDONS EN ACCESSOIRES</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank"
+                           href="https://www.kiwi-electronics.nl/l293d-dual-h-bridge-motor-driver-ic?search=LD293">LD293D</a>
+                    </td>
+                    <td>LD293D DUAL H-BRIDGE MOTOR DRIVER VOOR DC EN STAPPENMOTOREN 600MA</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="http://pi4j.com/">Pi4J!</a></td>
+                    <td>Project intended to provide a friendly object-oriented I/O API</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="http://pi4j.com/">Pi4J!</a></td>
+                    <td>Project intended to provide a friendly object-oriented I/O API</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="http://wiringpi.com/">Wiring Pi</a></td>
+                    <td>GPIO Interface library for the Raspberry Pi</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.hobbyelectronica.nl">Hobby Electronica</a></td>
+                    <td>Electronica, Arduino, Componenten, Modules and Sensors.</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.bitsandparts.eu/Home/c1">Bits & Parts</a></td>
+                    <td>Webshop for Arduino, Raspberry Pi and robotica</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="https://www.raspberrypi.org/resources/">Pi resources</a></td>
+                    <td>Free resources to teach, learn, and make with Raspberry Pi</td>
+                </tr>
+                <tr>
+                    <td><a target="_blank" href="http://www.rhydolabz.com/wiki/?p=11288">DC motor control with L293D</a>
+                    </td>
+                    <td>DC Motor Control Using L293D in Raspberry Pi2</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="webjars/angularjs/1.6.2/angular.min.js"></script>
+<script src="webjars/jquery/3.2.0/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="js/raspiModule.js"></script>
+<script src="js/raspiController.js"></script>
+</html>
